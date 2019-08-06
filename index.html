@@ -11,8 +11,11 @@
           display:flex;
           flex-direction: row;
           justify-content: space-between;
+          padding: 1rem;
+          background-color: blue;
         }
       </style>
+
       </head>
         <body>
           <h1>Acme Employee Lister</h1>
@@ -28,8 +31,10 @@
               const usersList = document.querySelector('#usersList');
 
               const fetchData = async()=>{
-                const response = await fetch('https://acme-users-api-rev.herokuapp.com/api/users');
+                const response = await fetch('https://acme-users-api-rev.herokuapp.com/api/users/');
                 const emps = await response.json();
+                const count = emps.count;
+                const pages = count/50;
                 const html = emps.users.map(user =>
                 `
                 <div id='users'>
@@ -42,7 +47,7 @@
               ).join('');
               usersList.innerHTML = html;
               };
-
+              window.addEventListener
               fetchData();
             </script>
         </body>
